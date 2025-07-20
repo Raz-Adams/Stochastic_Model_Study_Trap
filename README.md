@@ -51,11 +51,11 @@ python random_walk.py
 
 This project simulates daily weather patterns using a **Markov Chain**, a fundamental model in the study of **stochastic systems**. The model predicts tomorrow's weather based *only* on today's weather, demonstrating the "memoryless" property of Markovian processes.
 
-The system has two states: **"Sunny"** and **"Rainy"**. The transitions between these states are governed by a predefined probability matrix. By simulating the weather for a full year (365 days), we can observe the long-term behavior and stability of the system.
+The system has two states: **"Sunny"** and **"Rainy"**. A predefined probability matrix governs the transitions between these states. By simulating the weather for a full year (365 days), we can observe the long-term behaviour and stability of the system.
 
 ## Simulation Output
 
-The script generates a bar chart summarizing the total number of sunny and rainy days over the simulated period. The exact numbers will vary slightly with each run due to the random nature of the simulation, but they will tend toward a stable distribution.
+The script generates a bar chart summarising the total number of sunny and rainy days over the simulated period. The exact numbers will vary slightly with each run due to the random nature of the simulation, but they will tend toward a stable distribution.
 
 ![Weather Simulation Results](Starter_projects/Weather_simulation.png)
 
