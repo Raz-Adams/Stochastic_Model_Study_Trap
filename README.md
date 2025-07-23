@@ -63,9 +63,51 @@ Notice that the arrivals are clustered randomly—some are close together, while
 *   **Exponential Distribution:** The probability distribution that describes the time between events in a Poisson process. The simulation's engine is built on generating random numbers from this distribution.
 *   **Time-Based Simulation:** The use of a `while` loop that advances a simulation clock, which is a powerful technique for modelling dynamic systems that don't conform to fixed intervals.
 
-## Exploring Further
+# Project 4: Stochastic SIR Epidemic Simulation
 
-The model can be easily extended to simulate more complex scenarios. A "bonus challenge" version of this script models a variable arrival rate, such as a "lunch rush" where the customer traffic temporarily triples, providing a more realistic simulation of real-world behaviour.
+This capstone project implements a sophisticated, event-driven simulation of an epidemic spreading through a population. It synthesizes the concepts from previous projects—discrete states, probabilistic transitions, and continuous-time random events—into a single, powerful model.
+
+The simulation is based on the classic **SIR model** of epidemiology and is powered by the **Gillespie Algorithm**, a cornerstone method for stochastic simulation in computational biology and chemistry.
+
+## The SIR Model
+
+Individuals in the population can exist in one of three states:
+*   **S**usceptible: Healthy individuals who can contract the disease.
+*   **I**nfected: Individuals who have the disease and can transmit it.
+*   **R**ecovered: Individuals who have recovered and are now immune.
+
+Two key events drive the system's dynamics: **Infection** (S → I) and **Recovery** (I → R).
+
+## The Simulation Engine: The Gillespie Algorithm
+
+Unlike simpler time-stepped models, this simulation is event-driven. It uses the Gillespie Algorithm to determine the exact, random time of the next event. The algorithm repeatedly answers two questions:
+
+1.  **When will the next event happen?** The time until the next event (either an infection or a recovery) is drawn from an exponential distribution whose rate is the sum of all possible event rates.
+2.  **Which event will it be?** A probabilistic choice is made between an infection and a recovery, with the likelihood of each based on its relative rate.
+
+This approach creates a more realistic and computationally efficient simulation of the underlying stochastic process.
+
+## Simulation Output
+
+The script generates the classic epidemic curve, showing the number of individuals in each compartment (S, I, R) over time. The stochastic nature means that each run produces a slightly different curve, mirroring the randomness of a real-world outbreak.
+
+![SIR Epidemic Curve](Starter_projects/Epidemic_simulation.png)
+
+## Core Concepts Implemented
+
+*   **SIR Model:** Application of a fundamental epidemiological model.
+*   **Gillespie Algorithm:** A powerful and widely used algorithm for exact stochastic simulation.
+*   **Event-Driven Simulation:** A more advanced simulation paradigm compared to fixed time-stepping.
+*   **Emergent Behaviour:** The classic epidemic curve is not explicitly programmed; it *emerges* naturally from the simple, local rules of interaction between individuals.
+
+## Understanding the Epidemic Threshold (R₀)
+
+The model's behaviour is critically dependent on its parameters, `beta` (transmission rate) and `gamma` (recovery rate). Their ratio defines the **Basic Reproduction Number**, `R₀ = β / γ`.
+
+*   If **R₀ > 1**, an outbreak will occur.
+*   If **R₀ < 1**, the infection will die out without causing a major epidemic.
+
+By experimenting with these parameters (e.g., lowering `beta`), the simulation correctly demonstrates this threshold behaviour, providing a hands-on understanding of a key concept in epidemiology.
 
 ## How to Run
 
